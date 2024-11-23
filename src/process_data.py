@@ -35,6 +35,11 @@ def add_features(teams):
     Returns:
         pd.DataFrame: Dataset with added features.
     """
+
     teams["win_rate"] = teams["won"] / teams["GP"]
     teams["point_balance"] = teams["o_pts"] / teams["d_pts"]
+    teams["home_win_rate"] = teams["homeW"] / (teams["homeW"] + teams["homeL"])
+    teams["away_win_rate"] = teams["awayW"] / (teams["awayW"] + teams["awayL"])
+    teams["avg_point_diff"] = (teams["o_pts"] - teams["d_pts"]) / teams["GP"]
+    
     return teams
