@@ -45,7 +45,15 @@ cd <repository-folder>
 pip install -r requirements.txt
 ```
 
-#### **Step 4: Run the Project**
+#### **Step 4: Run Jupyter Notebook**
+
+Navigate to the `notebooks` folder and start the Jupyter Notebook server:
+
+```bash
+jupyter notebook
+```
+
+#### **Step 5: Run the Project**
 
 Navigate to the `src` folder and execute the `main.py` file:
 ```bash
