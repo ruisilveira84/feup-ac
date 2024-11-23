@@ -1,24 +1,28 @@
 import pandas as pd
 
 # Importar as relações
-def read_data():
-    awards_players = pd.read_csv('../data/development_data/awards_players.csv')
-    coaches = pd.read_csv('../data/development_data/coaches.csv')
-    players = pd.read_csv('../data/development_data/players.csv')
-    players_teams = pd.read_csv('../data/development_data/players_teams.csv')
-    series_post = pd.read_csv('../data/development_data/series_post.csv')
-    teams = pd.read_csv('../data/development_data/teams.csv')
-    teams_post = pd.read_csv('../data/development_data/teams_post.csv')
+import os
+import pandas as pd
 
-    tables = {"awards_players": awards_players,
-            "coaches": coaches, 
-            "players": players, 
-            "players_teams": players_teams, 
-            "series_post": series_post, 
-            "teams": teams, 
-            "teams_post": teams_post}
-    
-    return tables
+def read_data():
+    base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/development_data'))
+    awards_players = pd.read_csv(os.path.join(base_path, 'awards_players.csv'))
+    coaches = pd.read_csv(os.path.join(base_path, 'coaches.csv'))
+    players = pd.read_csv(os.path.join(base_path, 'players.csv'))
+    players_teams = pd.read_csv(os.path.join(base_path, 'players_teams.csv'))
+    series_post = pd.read_csv(os.path.join(base_path, 'series_post.csv'))
+    teams = pd.read_csv(os.path.join(base_path, 'teams.csv'))
+    teams_post = pd.read_csv(os.path.join(base_path, 'teams_post.csv'))
+
+    return {
+        "awards_players": awards_players,
+        "coaches": coaches,
+        "players": players,
+        "players_teams": players_teams,
+        "series_post": series_post,
+        "teams": teams,
+        "teams_post": teams_post
+    }
 
 def print_null_fields(tables: dict[str, pd.DataFrame]):
     for name,table in tables.items():

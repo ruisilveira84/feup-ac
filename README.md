@@ -10,11 +10,52 @@ Over the past 10 years, data has been collected on players, teams, coaches, game
 
 ## Requirements
 
-* python3
-* pandas
+### **1. Python and Libraries**
 
-## Our Team
+To set up the project, ensure you have Python 3.7 or later installed.
+
+The required Python libraries are listed in the `requirements.txt` file. To install them, follow these steps:
+
+### **2. Setup Instructions**
+
+#### **Step 1: Clone the Repository**
+```bash
+git clone <repository-url>
+cd <repository-folder>
+```
+
+#### **Step 2: Create a Virtual Environment (Recommended)**
+
+- **On Linux/macOS:**
+
+  ```bash
+  python3 -m venv venv
+  source venv/bin/activate
+  ```
+- **On Windows:**
+
+  ```bash
+  python -m venv venv
+  venv\Scripts\activate
+  ```
+
+#### **Step 3: Install the Requirements**
+
+```bash
+pip install -r requirements.txt
+```
+
+#### **Step 4: Run the Project**
+
+Navigate to the `src` folder and execute the `main.py` file:
+```bash
+python src/main.py
+```
+
+## Team
+
 | Name             | Number    | E-Mail             |
 | ---------------- | --------- | ------------------ |
 | Anu Atolagbe     | 202400090 | up202400090@up.pt  |
 | Rui Silveira     | 202108878 | up202108878@up.pt  |
+| Tomás Vicente    | 202108717 | up202108717@up.pt  |
