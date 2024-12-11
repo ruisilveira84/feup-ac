@@ -47,5 +47,5 @@ def remove_null_entries(tables: dict[str, pd.DataFrame]):
 def save_files(folder: str, names: list[str], tables: list[pd.DataFrame]):
     assert(len(names) == len(tables))
     for name,table in zip(names, tables):
-        table.to_csv(os.path.join("..","data",folder, name), index=False)
+        table.to_csv(os.path.join("..","data",folder, name)+".csv", index=False)
         print(f"Data {name} saved to {os.path.join('..','data',folder)}")
