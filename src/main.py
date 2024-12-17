@@ -1,6 +1,8 @@
 import read_data as rd
 import process_data as pd
 import model_training as mt
+import player_efficiency_rating as per
+import os
 #import pandas as pd
 #import matplotlib.pyplot as plt
 #import numpy as np
@@ -47,3 +49,16 @@ if __name__ == "__main__":
     print("Evaluating the model...")
     y_pred = model.predict(X_test)
     print(classification_report(y_test, y_pred))
+
+    # Step 6: Calculate PER
+    print("Calculating Player Efficiency Rating (PER)...")
+    players_stats = tables["players_teams"]  # Use the correct table
+    players_stats = per.calculate_per(players_stats)
+
+    # Ensure the output directory exists and save the data
+    output_dir = "../data/01-starting_data/development_data"
+    os.makedirs(output_dir, exist_ok=True)
+
+    players_stats.to_csv(os.path.join(output_dir, "players_with_per.csv"), index=False)
+    print("Player Efficiency Rating (PER) calculado e salvo com sucesso!")
+    
