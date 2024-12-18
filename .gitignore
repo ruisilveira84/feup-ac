@@ -2,3 +2,4 @@ src/__pycache__
 venv/
 .venv/
 notebooks/.ipynb_checkpoints/
+notebooks/comparison.ipynb
