@@ -1,6 +1,8 @@
 import read_data as rd
 import process_data as pd
 import model_training as mt
+import player_efficiency_rating as per
+import os
 #import pandas as pd
 #import matplotlib.pyplot as plt
 #import numpy as np
@@ -47,3 +49,42 @@ if __name__ == "__main__":
     print("Evaluating the model...")
     y_pred = model.predict(X_test)
     print(classification_report(y_test, y_pred))
+
+     # Step 6: Calculate PER
+    print("Calculating Player Efficiency Rating (PER)...")
+    if "players_teams" in tables:
+        players_stats = tables["players_teams"]
+    else:
+        raise KeyError("Table 'players_teams' not found in loaded data!")
+
+    # Map the required columns for PER calculation
+    players_stats['MIN'] = players_stats['minutes']
+    players_stats['PTS'] = players_stats['points']
+    players_stats['ORB'] = players_stats['oRebounds']
+    players_stats['DRB'] = players_stats['dRebounds']
+    players_stats['AST'] = players_stats.get('assists', 0)
+    players_stats['STL'] = players_stats.get('steals', 0)
+    players_stats['BLK'] = players_stats.get('blocks', 0)
+    players_stats['TO'] = players_stats.get('turnovers', 0)
+    players_stats['PF'] = players_stats.get('fouls', 0)
+
+    # Ensure required columns are ready
+    print(players_stats[['playerID', 'MIN', 'PTS', 'ORB', 'DRB']].head())
+
+    # Calculate PER
+    players_stats = per.calculate_per(players_stats)
+
+    # Save the results
+    output_file = "players_with_per.csv"
+    players_stats.to_csv(output_file, index=False)
+    print(f"Player Efficiency Rating (PER) calculado e salvo com sucesso em '{output_file}'!")
+
+    # Verificar o conteúdo do DataFrame antes de salvar
+    print("Linhas no DataFrame antes de salvar:", len(players_stats))
+    print(players_stats.head())
+
+    # Salvar os dados no diretório atual
+    output_file = "./players_with_per.csv"
+    players_stats.to_csv(output_file, index=False)
+
+    print(f"Player Efficiency Rating (PER) calculado e salvo com sucesso em '{output_file}'!")

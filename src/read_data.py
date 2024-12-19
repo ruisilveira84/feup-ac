@@ -5,7 +5,7 @@ import os
 import pandas as pd
 
 def read_data():
-    base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/development_data'))
+    base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/01-starting_data/development_data'))
     awards_players = pd.read_csv(os.path.join(base_path, 'awards_players.csv'))
     coaches = pd.read_csv(os.path.join(base_path, 'coaches.csv'))
     players = pd.read_csv(os.path.join(base_path, 'players.csv'))
