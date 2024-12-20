@@ -47,18 +47,20 @@ pip install -r requirements.txt
 
 #### **Step 4: Run Jupyter Notebook**
 
-Navigate to the `notebooks` folder and start the Jupyter Notebook server:
+Start the Jupyter Notebook server:
 
 ```bash
 jupyter notebook
 ```
+Navigate to `src/main.ipynb` and run it
 
-#### **Step 5: Run the Project**
 
-Navigate to the `src` folder and execute the `main.py` file:
-```bash
-python src/main.py
-```
+OR
+
+
+Open the file `src/main.ipynb` and run it using VSCode
+
+
 
 ## Team
 

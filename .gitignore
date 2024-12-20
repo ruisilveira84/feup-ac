@@ -1,6 +1,6 @@
 src/__pycache__
 src/.ipynb_checkpoints/
-venv/
-.venv/
+*venv/
+*.venv/
 notebooks/.ipynb_checkpoints/
 notebooks/comparison.ipynb

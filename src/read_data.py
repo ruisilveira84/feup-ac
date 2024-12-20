@@ -1,11 +1,19 @@
-import pandas as pd
-
-# Importar as relações
 import os
 import pandas as pd
 
+# Function to read multiple data files and return them as DataFrames
 def read_data():
+    """
+    Reads data files from the specified directory and loads them into pandas DataFrames.
+
+    Returns:
+        dict: A dictionary containing the loaded data tables with keys as table names 
+              and values as pandas DataFrames.
+    """
+    # Define the base path to the data directory
     base_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../data/01-starting_data/development_data'))
+    
+    # Load each CSV file into a pandas DataFrame
     awards_players = pd.read_csv(os.path.join(base_path, 'awards_players.csv'))
     coaches = pd.read_csv(os.path.join(base_path, 'coaches.csv'))
     players = pd.read_csv(os.path.join(base_path, 'players.csv'))
@@ -14,6 +22,7 @@ def read_data():
     teams = pd.read_csv(os.path.join(base_path, 'teams.csv'))
     teams_post = pd.read_csv(os.path.join(base_path, 'teams_post.csv'))
 
+    # Return a dictionary with all the loaded tables
     return {
         "awards_players": awards_players,
         "coaches": coaches,
@@ -24,28 +33,23 @@ def read_data():
         "teams_post": teams_post
     }
 
-def print_null_fields(tables: dict[str, pd.DataFrame]):
-    for name,table in tables.items():
-        print(f"Table {name}:")
-        print(table.isnull().sum())
-        print("\n")
-
-def print_empty_fields(tables: dict[str, pd.DataFrame]):
-    for name,table in tables.items():
-        print(f"Table {name}:")
-        print(table[table.isnull().any(axis=1)])
-        print("\n")
-
-def remove_null_entries(tables: dict[str, pd.DataFrame]):
-    tables["players"] = tables["players"].dropna(axis=1, thresh=len(tables["players"]) - 100)
-
-    for key in tables:
-        tables[key] = tables[key].dropna()
-
-    return tables
-
+# Function to save a list of DataFrames to CSV files in a specified folder
 def save_files(folder: str, names: list[str], tables: list[pd.DataFrame]):
+    """
+    Writes tables to CSV files in the specified folder.
+
+    Args:
+        folder (str): The target folder path, relative to the data directory.
+        names (list[str]): List of strings with the names for the output files (without extensions).
+        tables (list[pd.DataFrame]): List of pandas DataFrames to save as CSV files.
+    """
+    # Ensure the number of names matches the number of tables
     assert(len(names) == len(tables))
-    for name,table in zip(names, tables):
-        table.to_csv(os.path.join("..","data",folder, name)+".csv", index=False)
-        print(f"Data {name} saved to {os.path.join('..','data',folder)}")
+    
+    # Iterate through each name and corresponding table
+    for name, table in zip(names, tables):
+        # Save each DataFrame to a CSV file in the specified folder
+        table.to_csv(os.path.join("..", "data", folder, name) + ".csv", index=False)
+        
+        # Print a confirmation message for each saved file
+        print(f"Data {name} saved to {os.path.join('..', 'data', folder)}")
